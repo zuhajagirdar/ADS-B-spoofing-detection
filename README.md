@@ -18,6 +18,20 @@ The system performs:
 - Rule-based labeling for anomaly detection
 - Machine learning classification using Random Forest
 
+## Design Decisions
+
+- **Use of Derived Features**  
+  Instead of relying only on raw ADS-B data, the system computes temporal differences (e.g., change in latitude, longitude, and altitude) to better capture abnormal aircraft behavior.
+
+- **Rule-Based Labeling**  
+  Due to the absence of labeled spoofing datasets, anomaly conditions were defined using domain-inspired thresholds (e.g., sudden position jumps, unrealistic velocity). These labels are used to train the model.
+
+- **Model Selection**  
+  A Random Forest classifier was chosen for its robustness to noise and ability to handle nonlinear relationships between features.
+
+- **Lightweight Deployment**  
+  The system is implemented using Streamlit to allow quick deployment and interactive visualization without requiring complex frontend frameworks.
+  
 ## System Architecture
 1. Raw ADS-B data is processed to extract meaningful features  
 2. Features are used to train a classification model  
